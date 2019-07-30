@@ -42,7 +42,7 @@ public class LocalFileConfigRepositoryTest {
   private ConfigSourceType someSourceType;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() throws Throwable {
     someBaseDir = new File("src/test/resources/config-cache");
     someBaseDir.mkdir();
 

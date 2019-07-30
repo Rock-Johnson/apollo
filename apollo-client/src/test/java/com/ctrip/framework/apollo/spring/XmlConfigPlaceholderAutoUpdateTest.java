@@ -26,7 +26,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   private static final String FX_APOLLO_NAMESPACE = "FX.apollo";
 
   @Test
-  public void testAutoUpdateWithOneNamespace() throws Exception {
+  public void testAutoUpdateWithOneNamespace() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -56,7 +56,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateDisabled() throws Exception {
+  public void testAutoUpdateDisabled() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -91,7 +91,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateWithMultipleNamespaces() throws Exception {
+  public void testAutoUpdateWithMultipleNamespaces() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -135,7 +135,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateWithMultipleNamespacesWithSameProperties() throws Exception {
+  public void testAutoUpdateWithMultipleNamespacesWithSameProperties() throws Throwable {
     int someTimeout = 1000;
     int someBatch = 2000;
     int anotherBatch = 3000;
@@ -169,7 +169,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateWithNewProperties() throws Exception {
+  public void testAutoUpdateWithNewProperties() throws Throwable {
     int initialTimeout = 1000;
     int newTimeout = 1001;
     int newBatch = 2001;
@@ -200,7 +200,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateWithIrrelevantProperties() throws Exception {
+  public void testAutoUpdateWithIrrelevantProperties() throws Throwable {
     int initialTimeout = 1000;
 
     String someIrrelevantKey = "someIrrelevantKey";
@@ -235,7 +235,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateWithDeletedProperties() throws Exception {
+  public void testAutoUpdateWithDeletedProperties() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
 
@@ -262,7 +262,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateWithMultipleNamespacesWithSamePropertiesDeleted() throws Exception {
+  public void testAutoUpdateWithMultipleNamespacesWithSamePropertiesDeleted() throws Throwable {
     int someTimeout = 1000;
     int someBatch = 2000;
     int anotherBatch = 3000;
@@ -294,7 +294,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateWithDeletedPropertiesWithNoDefaultValue() throws Exception {
+  public void testAutoUpdateWithDeletedPropertiesWithNoDefaultValue() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -322,7 +322,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateWithTypeMismatch() throws Exception {
+  public void testAutoUpdateWithTypeMismatch() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -352,7 +352,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateWithValueInjectedAsConstructorArgs() throws Exception {
+  public void testAutoUpdateWithValueInjectedAsConstructorArgs() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -383,7 +383,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateWithValueAndProperty() throws Exception {
+  public void testAutoUpdateWithValueAndProperty() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -413,7 +413,7 @@ public class XmlConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegratio
   }
 
   @Test
-  public void testAutoUpdateWithAllKindsOfDataTypes() throws Exception {
+  public void testAutoUpdateWithAllKindsOfDataTypes() throws Throwable {
     int someInt = 1000;
     int someNewInt = 1001;
     int[] someIntArray = {1, 2, 3, 4};

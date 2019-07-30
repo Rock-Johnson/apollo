@@ -304,7 +304,7 @@ public class RemoteConfigLongPollService {
     return gson.toJson(notifications);
   }
 
-  private List<ServiceDTO> getConfigServices() {
+  private List<ServiceDTO> getConfigServices() throws Throwable {
     List<ServiceDTO> services = m_serviceLocator.getConfigServices();
     if (services.size() == 0) {
       throw new ApolloConfigException("No available config service");

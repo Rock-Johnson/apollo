@@ -148,7 +148,7 @@ public class BootstrapConfigTest {
     private TestBean testBean;
 
     @BeforeClass
-    public static void beforeClass() throws Exception {
+    public static void beforeClass() throws Throwable {
       doSetUp();
 
       System.setProperty(PropertySourcesConstants.APOLLO_BOOTSTRAP_ENABLED, "true");
@@ -223,7 +223,7 @@ public class BootstrapConfigTest {
     private TestBean testBean;
 
     @BeforeClass
-    public static void beforeClass() throws Exception {
+    public static void beforeClass() throws Throwable {
       doSetUp();
 
       System.setProperty(PropertySourcesConstants.APOLLO_BOOTSTRAP_ENABLED, "true");
@@ -290,7 +290,7 @@ public class BootstrapConfigTest {
     private TestBean testBean;
 
     @BeforeClass
-    public static void beforeClass() throws Exception {
+    public static void beforeClass() throws Throwable {
       doSetUp();
 
       System.setProperty(PropertySourcesConstants.APOLLO_BOOTSTRAP_ENABLED, "true");

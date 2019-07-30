@@ -5,11 +5,11 @@ import com.ctrip.framework.apollo.enums.PropertyChangeType;
 import com.ctrip.framework.apollo.model.ConfigChange;
 import com.ctrip.framework.apollo.model.ConfigChangeEvent;
 import com.ctrip.framework.apollo.spring.util.SpringInjector;
+import com.ctrip.framework.apollo.util.Objects;
 import com.google.gson.Gson;
 import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.Collection;
-import java.util.Objects;
 import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -101,7 +101,7 @@ public class AutoUpdateConfigChangeListener implements ConfigChangeListener{
    * Logic transplanted from DefaultListableBeanFactory
    * @see org.springframework.beans.factory.support.DefaultListableBeanFactory#doResolveDependency(org.springframework.beans.factory.config.DependencyDescriptor, java.lang.String, java.util.Set, org.springframework.beans.TypeConverter)
    */
-  private Object resolvePropertyValue(SpringValue springValue) {
+  private Object resolvePropertyValue(SpringValue springValue) throws Throwable {
     // value will never be null, as @Value and @ApolloJsonValue will not allow that
     Object value = placeholderHelper
         .resolvePropertyValue(beanFactory, springValue.getBeanName(), springValue.getPlaceholder());
@@ -126,7 +126,7 @@ public class AutoUpdateConfigChangeListener implements ConfigChangeListener{
     return value;
   }
 
-  private Object parseJsonValue(String json, Type targetType) {
+  private Object parseJsonValue(String json, Type targetType) throws Throwable {
     try {
       return gson.fromJson(json, targetType);
     } catch (Throwable ex) {

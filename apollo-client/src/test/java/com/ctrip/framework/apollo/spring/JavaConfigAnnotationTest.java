@@ -43,7 +43,7 @@ public class JavaConfigAnnotationTest extends AbstractSpringIntegrationTest {
   private static final String APPLICATION_YAML_NAMESPACE = "application.yaml";
 
   @Test
-  public void testApolloConfig() throws Exception {
+  public void testApolloConfig() throws Throwable {
     Config applicationConfig = mock(Config.class);
     Config fxApolloConfig = mock(Config.class);
     String someKey = "someKey";
@@ -253,7 +253,7 @@ public class JavaConfigAnnotationTest extends AbstractSpringIntegrationTest {
   }
 
   @Test
-  public void testApolloConfigChangeListenerWithYamlFile() throws Exception {
+  public void testApolloConfigChangeListenerWithYamlFile() throws Throwable {
     String someKey = "someKey";
     String someValue = "someValue";
     String anotherValue = "anotherValue";

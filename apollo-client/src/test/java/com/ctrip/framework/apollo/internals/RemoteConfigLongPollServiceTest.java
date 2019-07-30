@@ -60,7 +60,7 @@ public class RemoteConfigLongPollServiceTest {
   private static String someCluster;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() throws Throwable {
     MockInjector.reset();
 
     MockInjector.setInstance(HttpUtil.class, httpUtil);

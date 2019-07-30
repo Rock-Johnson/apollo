@@ -8,7 +8,6 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -86,11 +85,11 @@ public class ConfigIntegrationTest extends BaseIntegrationTest {
         recursiveDelete(f);
       }
     }
-    try {
-      Files.deleteIfExists(file.toPath());
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+//    try {
+//     Files.deleteIfExists(file.toPath());
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
 
   }
 
@@ -446,9 +445,19 @@ public class ConfigIntegrationTest extends BaseIntegrationTest {
 
   private File createLocalCachePropertyFile(Properties properties) throws IOException {
     File file = new File(configDir, assembleLocalCacheFileName());
-    try (FileOutputStream in = new FileOutputStream(file)) {
+    FileOutputStream in = null;
+
+    try {
+      in = new FileOutputStream(file);
       properties.store(in, "Persisted by ConfigIntegrationTest");
+    } catch (IOException e) {
+      throw e;
+    } finally {
+      if (in != null) {
+        in.close();
+      }
     }
+
     return file;
   }
 

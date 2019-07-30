@@ -1,15 +1,10 @@
 package com.ctrip.framework.foundation.internals;
 
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.Objects;
 
 public enum NetworkInterfaceManager {
   INSTANCE;
@@ -99,7 +94,7 @@ public enum NetworkInterfaceManager {
     try {
       Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
       List<NetworkInterface> nis = interfaces == null ? Collections.<NetworkInterface>emptyList() : Collections.list(interfaces);
-      List<InetAddress> addresses = new ArrayList<>();
+      List<InetAddress> addresses = new ArrayList<InetAddress>();
       InetAddress local = null;
 
       try {
@@ -120,6 +115,6 @@ public enum NetworkInterfaceManager {
       // ignore it
     }
 
-    m_local = InetAddress.getLoopbackAddress();
+    m_local = InetAddressUtil.getLoopbackAddress();
   }
 }

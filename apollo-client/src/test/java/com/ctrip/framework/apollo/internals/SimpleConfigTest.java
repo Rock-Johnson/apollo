@@ -38,7 +38,7 @@ public class SimpleConfigTest {
   }
 
   @Test
-  public void testGetProperty() throws Exception {
+  public void testGetProperty() throws Throwable {
     Properties someProperties = new Properties();
     String someKey = "someKey";
     String someValue = "someValue";
@@ -56,7 +56,7 @@ public class SimpleConfigTest {
   }
 
   @Test
-  public void testLoadConfigFromConfigRepositoryError() throws Exception {
+  public void testLoadConfigFromConfigRepositoryError() throws Throwable {
     String someKey = "someKey";
     String anyValue = "anyValue" + Math.random();
 
@@ -69,7 +69,7 @@ public class SimpleConfigTest {
   }
 
   @Test
-  public void testOnRepositoryChange() throws Exception {
+  public void testOnRepositoryChange() throws Throwable {
     Properties someProperties = new Properties();
     String someKey = "someKey";
     String someValue = "someValue";

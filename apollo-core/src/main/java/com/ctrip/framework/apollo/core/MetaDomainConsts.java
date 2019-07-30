@@ -11,6 +11,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import com.ctrip.framework.apollo.core.utils.IntegerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,7 +57,7 @@ public class MetaDomainConsts {
   /**
    * Return one meta server address. If multiple meta server addresses are configured, will select one.
    */
-  public static String getDomain(Env env) {
+  public static String getDomain(Env env) throws Throwable {
     String metaServerAddress = getMetaServerAddress(env);
     // if there is more than one address, need to select one
     if (metaServerAddress.contains(",")) {
@@ -116,7 +117,7 @@ public class MetaDomainConsts {
       @Override
       public int compare(MetaServerProvider o1, MetaServerProvider o2) {
         // the smaller order has higher priority
-        return Integer.compare(o1.getOrder(), o2.getOrder());
+        return IntegerUtil.compare(o1.getOrder(), o2.getOrder());
       }
     });
 
@@ -132,7 +133,7 @@ public class MetaDomainConsts {
    * In production environment, we still suggest using one single domain like http://config.xxx.com(backed by software
    * load balancers like nginx) instead of multiple ip addresses
    */
-  private static String selectMetaServerAddress(String metaServerAddresses) {
+  private static String selectMetaServerAddress(String metaServerAddresses) throws Throwable {
     String metaAddressSelected = selectedMetaServerAddressCache.get(metaServerAddresses);
     if (metaAddressSelected == null) {
       // initialize
@@ -146,7 +147,7 @@ public class MetaDomainConsts {
     return metaAddressSelected;
   }
 
-  private static void updateMetaServerAddresses(String metaServerAddresses) {
+  private static void updateMetaServerAddresses(String metaServerAddresses) throws Throwable {
     logger.debug("Selecting meta server address for: {}", metaServerAddresses);
 
     Transaction transaction = Tracer.newTransaction("Apollo.MetaService", "refreshMetaServerAddress");

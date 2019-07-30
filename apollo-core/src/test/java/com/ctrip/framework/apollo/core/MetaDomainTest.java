@@ -23,14 +23,14 @@ public class MetaDomainTest extends BaseIntegrationTest {
   }
 
   @Test
-  public void testGetMetaDomain() {
+  public void testGetMetaDomain() throws Throwable {
     assertEquals("http://localhost:8080", MetaDomainConsts.getDomain(Env.LOCAL));
     assertEquals("http://dev:8080", MetaDomainConsts.getDomain(Env.DEV));
     assertEquals(MetaDomainConsts.DEFAULT_META_URL, MetaDomainConsts.getDomain(Env.PRO));
   }
 
   @Test
-  public void testGetValidAddress() throws Exception {
+  public void testGetValidAddress() throws Throwable {
     String someResponse = "some response";
     startServerWithHandlers(mockServerHandler(HttpServletResponse.SC_OK, someResponse));
 
@@ -45,7 +45,7 @@ public class MetaDomainTest extends BaseIntegrationTest {
   }
 
   @Test
-  public void testInvalidAddress() throws Exception {
+  public void testInvalidAddress() throws Throwable {
     String invalidServer = "http://localhost:" + findFreePort() + " ";
     String anotherInvalidServer = "http://localhost:" + findFreePort() + " ";
 

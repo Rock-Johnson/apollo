@@ -20,10 +20,18 @@ public abstract class ApolloProcessor implements BeanPostProcessor, PriorityOrde
       throws BeansException {
     Class clazz = bean.getClass();
     for (Field field : findAllField(clazz)) {
-      processField(bean, beanName, field);
+      try {
+        processField(bean, beanName, field);
+      } catch (Throwable throwable) {
+        throwable.printStackTrace();
+      }
     }
     for (Method method : findAllMethod(clazz)) {
-      processMethod(bean, beanName, method);
+      try {
+        processMethod(bean, beanName, method);
+      } catch (Throwable throwable) {
+        throwable.printStackTrace();
+      }
     }
     return bean;
   }
@@ -36,12 +44,12 @@ public abstract class ApolloProcessor implements BeanPostProcessor, PriorityOrde
   /**
    * subclass should implement this method to process field
    */
-  protected abstract void processField(Object bean, String beanName, Field field);
+  protected abstract void processField(Object bean, String beanName, Field field) throws Throwable;
 
   /**
    * subclass should implement this method to process method
    */
-  protected abstract void processMethod(Object bean, String beanName, Method method);
+  protected abstract void processMethod(Object bean, String beanName, Method method) throws Throwable;
 
 
   @Override
@@ -51,7 +59,7 @@ public abstract class ApolloProcessor implements BeanPostProcessor, PriorityOrde
   }
 
   private List<Field> findAllField(Class clazz) {
-    final List<Field> res = new LinkedList<>();
+    final List<Field> res = new LinkedList<Field>();
     ReflectionUtils.doWithFields(clazz, new ReflectionUtils.FieldCallback() {
       @Override
       public void doWith(Field field) throws IllegalArgumentException, IllegalAccessException {
@@ -62,7 +70,7 @@ public abstract class ApolloProcessor implements BeanPostProcessor, PriorityOrde
   }
 
   private List<Method> findAllMethod(Class clazz) {
-    final List<Method> res = new LinkedList<>();
+    final List<Method> res = new LinkedList<Method>();
     ReflectionUtils.doWithMethods(clazz, new ReflectionUtils.MethodCallback() {
       @Override
       public void doWith(Method method) throws IllegalArgumentException, IllegalAccessException {

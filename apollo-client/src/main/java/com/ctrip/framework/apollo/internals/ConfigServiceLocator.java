@@ -46,7 +46,7 @@ public class ConfigServiceLocator {
    */
   public ConfigServiceLocator() {
     List<ServiceDTO> initial = Lists.newArrayList();
-    m_configServices = new AtomicReference<>(initial);
+    m_configServices = new AtomicReference<List<ServiceDTO>>(initial);
     m_responseType = new TypeToken<List<ServiceDTO>>() {
     }.getType();
     m_httpUtil = ApolloInjector.getInstance(HttpUtil.class);
@@ -109,7 +109,7 @@ public class ConfigServiceLocator {
    *
    * @return the services dto
    */
-  public List<ServiceDTO> getConfigServices() {
+  public List<ServiceDTO> getConfigServices() throws Throwable {
     if (m_configServices.get().isEmpty()) {
       updateConfigServices();
     }
@@ -140,7 +140,7 @@ public class ConfigServiceLocator {
         m_configUtil.getRefreshIntervalTimeUnit());
   }
 
-  private synchronized void updateConfigServices() {
+  private synchronized void updateConfigServices() throws Throwable {
     String url = assembleMetaServiceUrl();
 
     HttpRequest request = new HttpRequest(url);
@@ -184,7 +184,7 @@ public class ConfigServiceLocator {
     logConfigServices(services);
   }
 
-  private String assembleMetaServiceUrl() {
+  private String assembleMetaServiceUrl() throws Throwable {
     String domainName = m_configUtil.getMetaServerDomainName();
     String appId = m_configUtil.getAppId();
     String localIp = m_configUtil.getLocalIp();

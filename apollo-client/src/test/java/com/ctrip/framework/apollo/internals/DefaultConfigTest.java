@@ -83,7 +83,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetPropertyWithAllPropertyHierarchy() throws Exception {
+  public void testGetPropertyWithAllPropertyHierarchy() throws Throwable {
     String someKey = "someKey";
     String someSystemPropertyValue = "system-property-value";
 
@@ -130,7 +130,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetIntProperty() throws Exception {
+  public void testGetIntProperty() throws Throwable {
     String someStringKey = "someStringKey";
     String someStringValue = "someStringValue";
 
@@ -153,7 +153,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetIntPropertyMultipleTimesWithCache() throws Exception {
+  public void testGetIntPropertyMultipleTimesWithCache() throws Throwable {
     String someKey = "someKey";
     Integer someValue = 2;
 
@@ -175,7 +175,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetIntPropertyMultipleTimesWithPropertyChanges() throws Exception {
+  public void testGetIntPropertyMultipleTimesWithPropertyChanges() throws Throwable {
     String someKey = "someKey";
     Integer someValue = 2;
     Integer anotherValue = 3;
@@ -201,7 +201,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetIntPropertyMultipleTimesWithSmallCache() throws Exception {
+  public void testGetIntPropertyMultipleTimesWithSmallCache() throws Throwable {
     String someKey = "someKey";
     Integer someValue = 2;
 
@@ -237,7 +237,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetIntPropertyMultipleTimesWithShortExpireTime() throws Exception {
+  public void testGetIntPropertyMultipleTimesWithShortExpireTime() throws Throwable {
     String someKey = "someKey";
     Integer someValue = 2;
 
@@ -267,7 +267,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetLongProperty() throws Exception {
+  public void testGetLongProperty() throws Throwable {
     String someStringKey = "someStringKey";
     String someStringValue = "someStringValue";
 
@@ -290,7 +290,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetShortProperty() throws Exception {
+  public void testGetShortProperty() throws Throwable {
     String someStringKey = "someStringKey";
     String someStringValue = "someStringValue";
 
@@ -313,7 +313,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetFloatProperty() throws Exception {
+  public void testGetFloatProperty() throws Throwable {
     String someStringKey = "someStringKey";
     String someStringValue = "someStringValue";
 
@@ -336,7 +336,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetDoubleProperty() throws Exception {
+  public void testGetDoubleProperty() throws Throwable {
     String someStringKey = "someStringKey";
     String someStringValue = "someStringValue";
 
@@ -359,7 +359,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetByteProperty() throws Exception {
+  public void testGetByteProperty() throws Throwable {
     String someStringKey = "someStringKey";
     String someStringValue = "someStringValue";
 
@@ -382,7 +382,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetBooleanProperty() throws Exception {
+  public void testGetBooleanProperty() throws Throwable {
     String someStringKey = "someStringKey";
     String someStringValue = "someStringValue";
 
@@ -405,7 +405,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetArrayProperty() throws Exception {
+  public void testGetArrayProperty() throws Throwable {
     String someKey = "someKey";
     String someDelimiter = ",";
     String someInvalidDelimiter = "{";
@@ -429,7 +429,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetArrayPropertyMultipleTimesWithCache() throws Exception {
+  public void testGetArrayPropertyMultipleTimesWithCache() throws Throwable {
     String someKey = "someKey";
     String someDelimiter = ",";
     String someInvalidDelimiter = "{";
@@ -461,7 +461,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetArrayPropertyMultipleTimesWithCacheAndValueChanges() throws Exception {
+  public void testGetArrayPropertyMultipleTimesWithCacheAndValueChanges() throws Throwable {
     String someKey = "someKey";
     String someDelimiter = ",";
 
@@ -491,7 +491,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetDatePropertyWithFormat() throws Exception {
+  public void testGetDatePropertyWithFormat() throws Throwable {
     Date someDefaultValue = new Date();
 
     Date shortDate = assembleDate(2016, 9, 28, 0, 0, 0, 0);
@@ -521,7 +521,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetDatePropertyWithNoFormat() throws Exception {
+  public void testGetDatePropertyWithNoFormat() throws Throwable {
     Date someDefaultValue = new Date();
 
     Date shortDate = assembleDate(2016, 9, 28, 0, 0, 0, 0);
@@ -546,7 +546,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetEnumProperty() throws Exception {
+  public void testGetEnumProperty() throws Throwable {
     SomeEnum someDefaultValue = SomeEnum.defaultValue;
 
     //set up config repo
@@ -563,7 +563,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetDurationProperty() throws Exception {
+  public void testGetDurationProperty() throws Throwable {
     long someDefaultValue = 1000;
     long result = 2 * 24 * 3600 * 1000 + 3 * 3600 * 1000 + 4 * 60 * 1000 + 5 * 1000 + 123;
 
@@ -581,7 +581,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testOnRepositoryChange() throws Exception {
+  public void testOnRepositoryChange() throws Throwable {
     String someKey = "someKey";
     String someSystemPropertyValue = "system-property-value";
 
@@ -777,7 +777,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetPropertyNames() {
+  public void testGetPropertyNames() throws Throwable {
     String someKeyPrefix = "someKey";
     String someValuePrefix = "someValue";
 
@@ -799,7 +799,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetPropertyNamesWithNullProp() {
+  public void testGetPropertyNamesWithNullProp() throws Throwable {
     when(configRepository.getConfig()).thenReturn(null);
 
     DefaultConfig defaultConfig =
@@ -810,7 +810,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testGetPropertyWithFunction() throws Exception {
+  public void testGetPropertyWithFunction() throws Throwable {
 
     String someKey = "someKey";
     String someValue = "a,b,c";
@@ -840,7 +840,7 @@ public class DefaultConfigTest {
   }
 
   @Test
-  public void testLoadFromRepositoryFailedAndThenRecovered() {
+  public void testLoadFromRepositoryFailedAndThenRecovered() throws Throwable {
     String someKey = "someKey";
     String someValue = "someValue";
     String someDefaultValue = "someDefaultValue";

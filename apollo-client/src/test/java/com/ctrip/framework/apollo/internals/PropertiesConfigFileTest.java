@@ -36,7 +36,7 @@ public class PropertiesConfigFileTest {
   }
 
   @Test
-  public void testWhenHasContent() throws Exception {
+  public void testWhenHasContent() throws Throwable {
     Properties someProperties = new Properties();
     String someKey = "someKey";
     String someValue = "someValue";
@@ -53,7 +53,7 @@ public class PropertiesConfigFileTest {
   }
 
   @Test
-  public void testWhenHasNoContent() throws Exception {
+  public void testWhenHasNoContent() throws Throwable {
     when(configRepository.getConfig()).thenReturn(null);
 
     PropertiesConfigFile configFile = new PropertiesConfigFile(someNamespace, configRepository);
@@ -63,7 +63,7 @@ public class PropertiesConfigFileTest {
   }
 
   @Test
-  public void testWhenConfigRepositoryHasError() throws Exception {
+  public void testWhenConfigRepositoryHasError() throws Throwable {
     when(configRepository.getConfig()).thenThrow(new RuntimeException("someError"));
 
     PropertiesConfigFile configFile = new PropertiesConfigFile(someNamespace, configRepository);
@@ -73,7 +73,7 @@ public class PropertiesConfigFileTest {
   }
 
   @Test
-  public void testOnRepositoryChange() throws Exception {
+  public void testOnRepositoryChange() throws Throwable {
     Properties someProperties = new Properties();
     String someKey = "someKey";
     String someValue = "someValue";
@@ -113,7 +113,7 @@ public class PropertiesConfigFileTest {
   }
 
   @Test
-  public void testWhenConfigRepositoryHasErrorAndThenRecovered() throws Exception {
+  public void testWhenConfigRepositoryHasErrorAndThenRecovered() throws Throwable {
     Properties someProperties = new Properties();
     String someKey = "someKey";
     String someValue = "someValue";

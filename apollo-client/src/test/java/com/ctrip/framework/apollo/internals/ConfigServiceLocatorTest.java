@@ -15,7 +15,7 @@ public class ConfigServiceLocatorTest {
   }
 
   @Test
-  public void testGetConfigServicesWithSystemProperty() throws Exception {
+  public void testGetConfigServicesWithSystemProperty() throws Throwable {
     String someConfigServiceUrl = " someConfigServiceUrl ";
     String anotherConfigServiceUrl = " anotherConfigServiceUrl ";
 

@@ -11,7 +11,7 @@ public interface ConfigRepository {
    * Get the config from this repository.
    * @return config
    */
-  public Properties getConfig();
+  public Properties getConfig() throws Throwable;
 
   /**
    * Set the fallback repo for this repository.

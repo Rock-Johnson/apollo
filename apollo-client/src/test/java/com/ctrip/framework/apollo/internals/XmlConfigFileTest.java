@@ -37,7 +37,7 @@ public class XmlConfigFileTest {
   }
 
   @Test
-  public void testWhenHasContent() throws Exception {
+  public void testWhenHasContent() throws Throwable {
     Properties someProperties = new Properties();
     String key = ConfigConsts.CONFIG_FILE_CONTENT_KEY;
     String someValue = "someValue";
@@ -54,7 +54,7 @@ public class XmlConfigFileTest {
   }
 
   @Test
-  public void testWhenHasNoContent() throws Exception {
+  public void testWhenHasNoContent() throws Throwable {
     when(configRepository.getConfig()).thenReturn(null);
 
     XmlConfigFile configFile = new XmlConfigFile(someNamespace, configRepository);
@@ -64,7 +64,7 @@ public class XmlConfigFileTest {
   }
 
   @Test
-  public void testWhenConfigRepositoryHasError() throws Exception {
+  public void testWhenConfigRepositoryHasError() throws Throwable {
     when(configRepository.getConfig()).thenThrow(new RuntimeException("someError"));
 
     XmlConfigFile configFile = new XmlConfigFile(someNamespace, configRepository);
@@ -74,7 +74,7 @@ public class XmlConfigFileTest {
   }
 
   @Test
-  public void testOnRepositoryChange() throws Exception {
+  public void testOnRepositoryChange() throws Throwable {
     Properties someProperties = new Properties();
     String key = ConfigConsts.CONFIG_FILE_CONTENT_KEY;
     String someValue = "someValue";
@@ -112,7 +112,7 @@ public class XmlConfigFileTest {
   }
 
   @Test
-  public void testOnRepositoryChangeWithContentAdded() throws Exception {
+  public void testOnRepositoryChangeWithContentAdded() throws Throwable {
     Properties someProperties = new Properties();
     String key = ConfigConsts.CONFIG_FILE_CONTENT_KEY;
     String someValue = "someValue";
@@ -148,7 +148,7 @@ public class XmlConfigFileTest {
   }
 
   @Test
-  public void testOnRepositoryChangeWithContentDeleted() throws Exception {
+  public void testOnRepositoryChangeWithContentDeleted() throws Throwable {
     Properties someProperties = new Properties();
     String key = ConfigConsts.CONFIG_FILE_CONTENT_KEY;
     String someValue = "someValue";
@@ -184,7 +184,7 @@ public class XmlConfigFileTest {
   }
 
   @Test
-  public void testWhenConfigRepositoryHasErrorAndThenRecovered() throws Exception {
+  public void testWhenConfigRepositoryHasErrorAndThenRecovered() throws Throwable {
     Properties someProperties = new Properties();
     String key = ConfigConsts.CONFIG_FILE_CONTENT_KEY;
     String someValue = "someValue";

@@ -1,9 +1,5 @@
 package com.ctrip.framework.apollo.spring;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import com.ctrip.framework.apollo.build.MockInjector;
 import com.ctrip.framework.apollo.core.ConfigConsts;
 import com.ctrip.framework.apollo.internals.SimpleConfig;
@@ -14,23 +10,21 @@ import com.ctrip.framework.apollo.spring.annotation.ApolloJsonValue;
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.ctrip.framework.apollo.util.ConfigUtil;
 import com.google.common.primitives.Ints;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.stereotype.Component;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.stereotype.Component;
+
+import static org.junit.Assert.*;
 
 public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrationTest {
 
@@ -43,7 +37,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   private static final String ANOTHER_KEY_PROPERTY = "anotherKey";
 
   @Test
-  public void testAutoUpdateWithOneNamespace() throws Exception {
+  public void testAutoUpdateWithOneNamespace() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -73,7 +67,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithOneYamlFile() throws Exception {
+  public void testAutoUpdateWithOneYamlFile() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -98,7 +92,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithValueAndXmlProperty() throws Exception {
+  public void testAutoUpdateWithValueAndXmlProperty() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -133,7 +127,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithYamlFileWithValueAndXmlProperty() throws Exception {
+  public void testAutoUpdateWithYamlFileWithValueAndXmlProperty() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -163,7 +157,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateDisabled() throws Exception {
+  public void testAutoUpdateDisabled() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -198,7 +192,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithMultipleNamespaces() throws Exception {
+  public void testAutoUpdateWithMultipleNamespaces() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -237,7 +231,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithMultipleNamespacesWithSameProperties() throws Exception {
+  public void testAutoUpdateWithMultipleNamespacesWithSameProperties() throws Throwable {
     int someTimeout = 1000;
     int someBatch = 2000;
     int anotherBatch = 3000;
@@ -270,7 +264,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithMultipleNamespacesWithSamePropertiesWithYamlFile() throws Exception {
+  public void testAutoUpdateWithMultipleNamespacesWithSamePropertiesWithYamlFile() throws Throwable {
     int someTimeout = 1000;
     int someBatch = 2000;
     int anotherBatch = 3000;
@@ -299,7 +293,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithNewProperties() throws Exception {
+  public void testAutoUpdateWithNewProperties() throws Throwable {
     int initialTimeout = 1000;
     int newTimeout = 1001;
     int newBatch = 2001;
@@ -327,7 +321,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithNewPropertiesWithYamlFile() throws Exception {
+  public void testAutoUpdateWithNewPropertiesWithYamlFile() throws Throwable {
     int initialTimeout = 1000;
     int newTimeout = 1001;
     int newBatch = 2001;
@@ -351,7 +345,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithIrrelevantProperties() throws Exception {
+  public void testAutoUpdateWithIrrelevantProperties() throws Throwable {
     int initialTimeout = 1000;
 
     String someIrrelevantKey = "someIrrelevantKey";
@@ -384,7 +378,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithDeletedProperties() throws Exception {
+  public void testAutoUpdateWithDeletedProperties() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
 
@@ -411,7 +405,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithDeletedPropertiesWithYamlFile() throws Exception {
+  public void testAutoUpdateWithDeletedPropertiesWithYamlFile() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
 
@@ -434,7 +428,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithMultipleNamespacesWithSamePropertiesDeleted() throws Exception {
+  public void testAutoUpdateWithMultipleNamespacesWithSamePropertiesDeleted() throws Throwable {
     int someTimeout = 1000;
     int someBatch = 2000;
     int anotherBatch = 3000;
@@ -464,7 +458,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithDeletedPropertiesWithNoDefaultValue() throws Exception {
+  public void testAutoUpdateWithDeletedPropertiesWithNoDefaultValue() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -492,7 +486,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithTypeMismatch() throws Exception {
+  public void testAutoUpdateWithTypeMismatch() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -522,7 +516,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithTypeMismatchWithYamlFile() throws Exception {
+  public void testAutoUpdateWithTypeMismatchWithYamlFile() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -546,7 +540,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithValueInjectedAsParameter() throws Exception {
+  public void testAutoUpdateWithValueInjectedAsParameter() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -577,7 +571,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testApplicationPropertySourceWithValueInjectedInConfiguration() throws Exception {
+  public void testApplicationPropertySourceWithValueInjectedInConfiguration() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -608,7 +602,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithValueInjectedAsConstructorArgs() throws Exception {
+  public void testAutoUpdateWithValueInjectedAsConstructorArgs() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -639,7 +633,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithInvalidSetter() throws Exception {
+  public void testAutoUpdateWithInvalidSetter() throws Throwable {
     int initialTimeout = 1000;
     int initialBatch = 2000;
     int newTimeout = 1001;
@@ -670,7 +664,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithNestedProperty() throws Exception {
+  public void testAutoUpdateWithNestedProperty() throws Throwable {
     String someKeyValue = "someKeyValue";
     String anotherKeyValue = "anotherKeyValue";
     String newKeyValue = "newKeyValue";
@@ -699,7 +693,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithNotSupportedNestedProperty() throws Exception {
+  public void testAutoUpdateWithNotSupportedNestedProperty() throws Throwable {
     String someKeyValue = "someKeyValue";
     String anotherKeyValue = "anotherKeyValue";
     int someValue = 1234;
@@ -728,7 +722,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithNestedPropertyWithDefaultValue() throws Exception {
+  public void testAutoUpdateWithNestedPropertyWithDefaultValue() throws Throwable {
     String someKeyValue = "someKeyValue";
     String someNewKeyValue = "someNewKeyValue";
     int someValue = 1234;
@@ -756,7 +750,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithMultipleNestedProperty() throws Exception {
+  public void testAutoUpdateWithMultipleNestedProperty() throws Throwable {
     String someKeyValue = "someKeyValue";
     String someNewKeyValue = "someNewKeyValue";
     String anotherKeyValue = "anotherKeyValue";
@@ -793,7 +787,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateWithAllKindsOfDataTypes() throws Exception {
+  public void testAutoUpdateWithAllKindsOfDataTypes() throws Throwable {
     int someInt = 1000;
     int someNewInt = 1001;
     int[] someIntArray = {1, 2, 3, 4};
@@ -886,7 +880,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateJsonValueWithInvalidValue() throws Exception {
+  public void testAutoUpdateJsonValueWithInvalidValue() throws Throwable {
     String someValidValue = "{\"a\":\"someString\", \"b\":10}";
     String someInvalidValue = "someInvalidValue";
 
@@ -914,7 +908,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateJsonValueWithNoValueAndNoDefaultValue() throws Exception {
+  public void testAutoUpdateJsonValueWithNoValueAndNoDefaultValue() throws Throwable {
     String someValidValue = "{\"a\":\"someString\", \"b\":10}";
 
     Properties properties = assembleProperties("jsonProperty", someValidValue);
@@ -941,7 +935,7 @@ public class JavaConfigPlaceholderAutoUpdateTest extends AbstractSpringIntegrati
   }
 
   @Test
-  public void testAutoUpdateJsonValueWithNoValueAndDefaultValue() throws Exception {
+  public void testAutoUpdateJsonValueWithNoValueAndDefaultValue() throws Throwable {
     String someValidValue = "{\"a\":\"someString\", \"b\":10}";
 
     Properties properties = assembleProperties("jsonProperty", someValidValue);

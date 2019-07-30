@@ -65,7 +65,7 @@ public class RemoteConfigRepositoryTest {
   private RemoteConfigLongPollService remoteConfigLongPollService;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() throws Throwable {
     someNamespace = "someName";
 
     when(pollResponse.getStatusCode()).thenReturn(HttpServletResponse.SC_NOT_MODIFIED);
@@ -91,7 +91,7 @@ public class RemoteConfigRepositoryTest {
   }
 
   @Test
-  public void testLoadConfig() throws Exception {
+  public void testLoadConfig() throws Throwable {
     String someKey = "someKey";
     String someValue = "someValue";
     Map<String, String> configurations = Maps.newHashMap();
@@ -111,7 +111,7 @@ public class RemoteConfigRepositoryTest {
   }
 
   @Test(expected = ApolloConfigException.class)
-  public void testGetRemoteConfigWithServerError() throws Exception {
+  public void testGetRemoteConfigWithServerError() throws Throwable {
 
     when(someResponse.getStatusCode()).thenReturn(500);
 
@@ -124,7 +124,7 @@ public class RemoteConfigRepositoryTest {
   }
 
   @Test
-  public void testRepositoryChangeListener() throws Exception {
+  public void testRepositoryChangeListener() throws Throwable {
     Map<String, String> configurations = ImmutableMap.of("someKey", "someValue");
     ApolloConfig someApolloConfig = assembleApolloConfig(configurations);
 

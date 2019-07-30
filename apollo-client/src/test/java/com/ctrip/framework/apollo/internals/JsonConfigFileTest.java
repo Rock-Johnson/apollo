@@ -35,7 +35,7 @@ public class JsonConfigFileTest {
   }
 
   @Test
-  public void testWhenHasContent() throws Exception {
+  public void testWhenHasContent() throws Throwable {
     Properties someProperties = new Properties();
     String key = ConfigConsts.CONFIG_FILE_CONTENT_KEY;
     String someValue = "someValue";
@@ -56,7 +56,7 @@ public class JsonConfigFileTest {
   }
 
   @Test
-  public void testWhenHasNoContent() throws Exception {
+  public void testWhenHasNoContent() throws Throwable {
     when(configRepository.getConfig()).thenReturn(null);
 
     JsonConfigFile configFile = new JsonConfigFile(someNamespace, configRepository);
@@ -66,7 +66,7 @@ public class JsonConfigFileTest {
   }
 
   @Test
-  public void testWhenConfigRepositoryHasError() throws Exception {
+  public void testWhenConfigRepositoryHasError() throws Throwable {
     when(configRepository.getConfig()).thenThrow(new RuntimeException("someError"));
 
     JsonConfigFile configFile = new JsonConfigFile(someNamespace, configRepository);
@@ -77,7 +77,7 @@ public class JsonConfigFileTest {
   }
 
   @Test
-  public void testOnRepositoryChange() throws Exception {
+  public void testOnRepositoryChange() throws Throwable {
     Properties someProperties = new Properties();
     String key = ConfigConsts.CONFIG_FILE_CONTENT_KEY;
     String someValue = "someValue";
@@ -107,7 +107,7 @@ public class JsonConfigFileTest {
   }
 
   @Test
-  public void testWhenConfigRepositoryHasErrorAndThenRecovered() throws Exception {
+  public void testWhenConfigRepositoryHasErrorAndThenRecovered() throws Throwable {
     Properties someProperties = new Properties();
     String key = ConfigConsts.CONFIG_FILE_CONTENT_KEY;
     String someValue = "someValue";

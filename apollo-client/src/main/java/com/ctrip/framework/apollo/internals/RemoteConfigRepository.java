@@ -77,13 +77,13 @@ public class RemoteConfigRepository extends AbstractConfigRepository {
    */
   public RemoteConfigRepository(String namespace) {
     m_namespace = namespace;
-    m_configCache = new AtomicReference<>();
+    m_configCache = new AtomicReference<ApolloConfig>();
     m_configUtil = ApolloInjector.getInstance(ConfigUtil.class);
     m_httpUtil = ApolloInjector.getInstance(HttpUtil.class);
     m_serviceLocator = ApolloInjector.getInstance(ConfigServiceLocator.class);
     remoteConfigLongPollService = ApolloInjector.getInstance(RemoteConfigLongPollService.class);
-    m_longPollServiceDto = new AtomicReference<>();
-    m_remoteMessages = new AtomicReference<>();
+    m_longPollServiceDto = new AtomicReference<ServiceDTO>();
+    m_remoteMessages = new AtomicReference<ApolloNotificationMessages>();
     m_loadConfigRateLimiter = RateLimiter.create(m_configUtil.getLoadConfigQPS());
     m_configNeedForceRefresh = new AtomicBoolean(true);
     m_loadConfigFailSchedulePolicy = new ExponentialSchedulePolicy(m_configUtil.getOnErrorRetryInterval(),
@@ -95,7 +95,7 @@ public class RemoteConfigRepository extends AbstractConfigRepository {
   }
 
   @Override
-  public Properties getConfig() {
+  public Properties getConfig() throws Throwable {
     if (m_configCache.get() == null) {
       this.sync();
     }
@@ -129,7 +129,7 @@ public class RemoteConfigRepository extends AbstractConfigRepository {
   }
 
   @Override
-  protected synchronized void sync() {
+  protected synchronized void sync() throws Throwable {
     Transaction transaction = Tracer.newTransaction("Apollo.ConfigService", "syncRemoteConfig");
 
     try {
@@ -163,7 +163,7 @@ public class RemoteConfigRepository extends AbstractConfigRepository {
     return result;
   }
 
-  private ApolloConfig loadApolloConfig() {
+  private ApolloConfig loadApolloConfig() throws Throwable {
     if (!m_loadConfigRateLimiter.tryAcquire(5, TimeUnit.SECONDS)) {
       //wait at most 5 seconds
       try {
@@ -316,7 +316,7 @@ public class RemoteConfigRepository extends AbstractConfigRepository {
     });
   }
 
-  private List<ServiceDTO> getConfigServices() {
+  private List<ServiceDTO> getConfigServices() throws Throwable {
     List<ServiceDTO> services = m_serviceLocator.getConfigServices();
     if (services.size() == 0) {
       throw new ApolloConfigException("No available config service");

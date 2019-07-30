@@ -112,7 +112,7 @@ public class ConfigUtil {
     return Foundation.net().getHostAddress();
   }
 
-  public String getMetaServerDomainName() {
+  public String getMetaServerDomainName() throws Throwable {
     return MetaDomainConsts.getDomain(getApolloEnv());
   }
 

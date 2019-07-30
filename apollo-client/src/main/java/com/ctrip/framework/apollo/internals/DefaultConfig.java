@@ -6,12 +6,12 @@ import java.io.InputStream;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
+import com.ctrip.framework.apollo.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,7 +48,7 @@ public class DefaultConfig extends AbstractConfig implements RepositoryChangeLis
     m_namespace = namespace;
     m_resourceProperties = loadFromResource(m_namespace);
     m_configRepository = configRepository;
-    m_configProperties = new AtomicReference<>();
+    m_configProperties = new AtomicReference<Properties>();
     m_warnLogRateLimiter = RateLimiter.create(0.017); // 1 warning log output per minute
     initialize();
   }
@@ -115,7 +115,7 @@ public class DefaultConfig extends AbstractConfig implements RepositoryChangeLis
 
   private Set<String> stringPropertyNames(Properties properties) {
     //jdk9以下版本Properties#enumerateStringProperties方法存在性能问题，keys() + get(k) 重复迭代, jdk9之后改为entrySet遍历.
-    Map<String, String> h = new HashMap<>();
+    Map<String, String> h = new HashMap<String, String>();
     for (Map.Entry<Object, Object> e : properties.entrySet()) {
       Object k = e.getKey();
       Object v = e.getValue();
@@ -159,7 +159,7 @@ public class DefaultConfig extends AbstractConfig implements RepositoryChangeLis
         calcPropertyChanges(m_namespace, m_configProperties.get(), newConfigProperties);
 
     ImmutableMap.Builder<String, ConfigChange> actualChanges =
-        new ImmutableMap.Builder<>();
+        new ImmutableMap.Builder<String, ConfigChange>();
 
     /** === Double check since DefaultConfig has multiple config sources ==== **/
 
