@@ -9,7 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.FileNotFoundException;
-import java.nio.file.Paths;
+//import java.nio.file.Paths;
 import java.util.Properties;
 
 public class ResourceUtils {
@@ -61,7 +61,9 @@ public class ResourceUtils {
     try {
       // load from default search locations
       for (String searchLocation : DEFAULT_FILE_SEARCH_LOCATIONS) {
-        File candidate = Paths.get(searchLocation, configPath).toFile();
+
+        File candidate = new File(searchLocation,configPath);
+        //File candidate = Paths.get(searchLocation, configPath).toFile();
         if (candidate.exists() && candidate.isFile() && candidate.canRead()) {
           logger.debug("Reading config from resource {}", candidate.getAbsolutePath());
           return new FileInputStream(candidate);

@@ -6,7 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
+//import java.nio.charset.StandardCharsets;
 
 /**
  * Created by gl49 on 2018/6/8.
@@ -42,13 +43,16 @@ public class NetUtil {
     InputStreamReader isr = null;
     InputStreamReader esr = null;
     try {
-      isr = new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8);
+      //isr = new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8);
+      isr = new InputStreamReader(conn.getInputStream(), Charset.forName("UTF-8"));
+
       CharStreams.toString(isr);
     } catch (IOException e) {
       InputStream errorStream = conn.getErrorStream();
 
       if (errorStream != null) {
-        esr = new InputStreamReader(errorStream, StandardCharsets.UTF_8);
+        //esr = new InputStreamReader(errorStream, StandardCharsets.UTF_8);
+        esr = new InputStreamReader(errorStream, Charset.forName("UTF-8"));
         try {
           CharStreams.toString(esr);
         } catch (IOException ioe) {

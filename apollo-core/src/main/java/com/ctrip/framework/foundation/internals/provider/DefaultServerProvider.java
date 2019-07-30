@@ -4,7 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
+//import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
 import com.ctrip.framework.foundation.internals.Utils;
@@ -48,7 +49,8 @@ public class DefaultServerProvider implements ServerProvider {
     try {
       if (in != null) {
         try {
-          m_serverProperties.load(new InputStreamReader(new BOMInputStream(in), StandardCharsets.UTF_8));
+          //m_serverProperties.load(new InputStreamReader(new BOMInputStream(in), StandardCharsets.UTF_8));
+          m_serverProperties.load(new InputStreamReader(new BOMInputStream(in), Charset.forName("UTF-8")));
         } finally {
           in.close();
         }

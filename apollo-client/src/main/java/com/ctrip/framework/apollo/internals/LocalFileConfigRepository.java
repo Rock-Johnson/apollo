@@ -7,9 +7,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+//import java.nio.file.Files;
+//import java.nio.file.Path;
+//import java.nio.file.Paths;
 import java.util.Properties;
 
 import org.slf4j.Logger;
@@ -69,6 +69,8 @@ public class LocalFileConfigRepository extends AbstractConfigRepository
   private File findLocalCacheDir() {
     try {
       String defaultCacheDir = m_configUtil.getDefaultLocalCacheDir();
+      //替换为jdk1.6写法
+      /*
       Path path = Paths.get(defaultCacheDir);
       if (!Files.exists(path)) {
         Files.createDirectories(path);
@@ -76,6 +78,15 @@ public class LocalFileConfigRepository extends AbstractConfigRepository
       if (Files.exists(path) && Files.isWritable(path)) {
         return new File(defaultCacheDir, CONFIG_DIR);
       }
+      */
+      File file = new File(defaultCacheDir);
+      if(!file.exists()){
+        file.mkdir();
+      }
+      if(file.exists() && file.canWrite()){
+        return new File(defaultCacheDir, CONFIG_DIR);
+      }
+
     } catch (Throwable ex) {
       //ignore
     }
@@ -257,9 +268,11 @@ public class LocalFileConfigRepository extends AbstractConfigRepository
     Transaction transaction = Tracer.newTransaction("Apollo.ConfigService", "createLocalConfigDir");
     transaction.addData("BaseDir", baseDir.getAbsolutePath());
     try {
-      Files.createDirectory(baseDir.toPath());
+      //Files.createDirectory(baseDir.toPath());
+      //替换为jdk1.6写法
+      baseDir.mkdir();
       transaction.setStatus(Transaction.SUCCESS);
-    } catch (IOException ex) {
+    } catch (Exception ex) {
       ApolloConfigException exception =
           new ApolloConfigException(
               String.format("Create local config directory %s failed", baseDir.getAbsolutePath()),
